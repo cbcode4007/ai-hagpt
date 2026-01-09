@@ -1,0 +1,16 @@
+{
+  "HA URL": "http://192.168.123.199:8123",
+  "Base URL": "http://192.168.123.145:5000",
+  "Entities File": "AvailableEntities.txt",
+  "Prompts File": "prompts.json",
+  "Chat History File": "chat_history.json",
+  "Log File": "hagpt.log",
+  "Reasoning Effort": "Not Implemented",
+  "AI Intel Level": "Not Implemented",
+  "Log Mode": "Info",
+  "Default Preference": "Family",
+  "User Prefs": {
+    "Family": "Family Preferences: Favourite music genres are Pop, Soft Rock. Interested in tech, glamping. Wants AI responses to be very concise and wants AI to be friendly easy going, funny, respectful.",
+    "Joe": "Joe Preferences: Likes to be addressed as Sir, favourite music genres are Pop and Soft Rock, favourite colour is Blue. Interested in Tech, Software, AI, ZFS, Incus, Arch Linux, Exotic Cars, Glamping. Would like all AI Interactions to be very concise and have the personality equivalent of an absolute comedian, not just for telling jokes but for being funny all the time in an Eddie Murphy way. Very friendly, funny as hell and full of spicy cuss words"
+  }
+}

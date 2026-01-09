@@ -1,0 +1,21 @@
+switch.fan
+switch.kettle
+switch.outside_lights
+switch.tapo_foyer
+switch.tapo_family_room
+switch.tapo_front_door
+switch.family_room_lights
+switch.max_base_power
+input_boolean.vacation_mode
+input_select.intelligence_level
+sensor.oshawa_temperature
+sensor.oshawa_summary
+script.set_reminder
+notify.max_notify (Announcements/Notifications)
+notify.echo_show_speak
+notify.mobile_app_sm_g975w (Darin)
+notify.mobile_app_sm_g998w (Colin)
+switch.debug
+input_select.preferences
+media_player.base_speaker
+sensor.global_news_main_rest   
