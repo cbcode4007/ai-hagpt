@@ -1,6 +1,6 @@
 {
   "HA URL": "http://192.168.123.199:8123",
-  "Base URL": "http://192.168.123.145:5000",
+  "Base URL": "http://192.168.123.180:5000",
   "Entities File": "AvailableEntities.txt",
   "Prompts File": "prompts.json",
   "Chat History File": "chat_history.json",

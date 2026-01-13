@@ -1,6 +1,5 @@
 from ailib import Payload
 from preferences import Preferences
-
 from datetime import datetime
 import requests
 import json
@@ -13,6 +12,8 @@ import sys
 class HAGPT:
     """
     Uses the Home Assistant services API and performs appropriate smart home operations, or just replies if request identified as a chat.
+    Version 0.8.4
+        - Initial log message position changed to send before program failure, added error handling for .env variables (keys/tokens)
     Version 0.8.3
         - Changed virtual entity input_number.volume to mediaplayer.base to align better with the AI's training
     Version 0.8.2
@@ -27,7 +28,7 @@ class HAGPT:
         - Fixed preference issue with Chat History using raw responses
     """
 
-    version = "0.8.3"
+    version = "0.8.4"
     ha_url = ""
     ha_entity_file = ""
     log_file = ""
@@ -49,8 +50,9 @@ class HAGPT:
         log_mode = self.preferences.get_setting_val("Log Mode")
         def_pref = self.preferences.get_setting_val("Default Preference")
 
-        #Setup Log file and current mode (Debug or Info)
+        #Setup Log file and current mode (Debug or Info) and create first entry
         self._configure_logging(log_mode)
+        logging.info("💡")
 
         #Load Open AI Key and HA Token from environment variable
         api_key = self._load_openai_key()
@@ -64,9 +66,9 @@ class HAGPT:
         api_key = os.getenv("OPENAI_API_KEY")
 
         if api_key is None:
-            logging.error("OPENAI_API_KEY environment variable not found. An OpenAI API Key is required to run this application.")
-            return ""
-
+            logging.error("OPENAI_API_KEY environment variable not found. An OpenAI API Key is required to run this application.")            
+            print("OPENAI_API_KEY environment variable not found. An OpenAI API Key is required to run this application. Exiting.")
+            exit(1)
         else:
             return api_key
         
@@ -75,9 +77,9 @@ class HAGPT:
         ha_token = os.getenv("HA_TOKEN")
 
         if ha_token is None:
-            logging.error("HA_TOKEN environment variable not found. A Home Assistant Token is required to run this application.")
-            return ""
-
+            logging.error("HA_TOKEN environment variable not found. A Home Assistant Token is required to run this application.")            
+            print("HA_TOKEN environment variable not found. A Home Assistant Token is required to run this application. Exiting.")
+            exit(1)
         else:
             return ha_token
 
@@ -403,8 +405,7 @@ class HAGPT:
 
         script = sys.argv[0]
         user_msg = sys.argv[1]
-
-        logging.info("💡")
+        
         logging.info(f"HAGPT v{self.version} class currently using ModelConnection v{self.payload.connection.version}, PromptBuilder v{self.payload.prompts.version}, ChatHistoryManager v{self.payload.history.version}, Preferences v{self.preferences.version}, Payload v{self.payload.version}")
 
         # This setting will be overriden when get_ha_entity_info retrieves HA's stored value 
